@@ -7,18 +7,20 @@ import Rating from '../components/Rating'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 const ProductScreen = () => {
   
   // const [product, setProduct] = useState({})
-  // //get the id from url. Destructure anything using params
+  //get the id from url. Destructure anything using params
   //coming from url productId by using useParams
   const { id: productId } = useParams();
   const { data: product, isLoading, error } = useGetProductDetailsQuery(productId);
-  //   // const product = products.find((p) => p._id === productId )
-  // // console.log(product);
+    // const product = products.find((p) => p._id === productId )
+  // console.log(product);
 
-  // //If productId changes then we want it to run
+  //If productId changes then we want it to run
   // useEffect(() => {
   //   const fetchProduct = async () => {
   //     const { data }  = await axios.get(`/api/products/${productId}`)
@@ -31,7 +33,7 @@ const ProductScreen = () => {
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
-      {isLoading ? (<h2>Loading...</h2>) : error ? (<div>{error?.data?.message || error.error }</div>):(
+      {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>{ error?.data?.message || error.error}</Message>):(
       <Row>
         <Col md={5}>
           <Image src={product.image} alt={product.name} fluid/>
@@ -82,7 +84,7 @@ const ProductScreen = () => {
           </Card>
         </Col>
       </Row>
-      )}
+      )}  
       
     </>
   )

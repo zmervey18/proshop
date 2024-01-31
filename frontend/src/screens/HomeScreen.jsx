@@ -4,6 +4,8 @@ import Product from '../components/Product';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const HomeScreen = () => {
     const { data: products, isLoading, error } = useGetProductsQuery();
@@ -21,9 +23,9 @@ const HomeScreen = () => {
 
   return (
       <>
-          {isLoading ? (<h2>Loading ...</h2>
-          ) : error ? (<div>{ error?.data?.message || error.error}</div>): (
-          <>
+          {isLoading ? (<Loader/>
+          ) : error ? (<Message variant='danger'>{ error?.data?.message || error.error}</Message>): (
+                  <>
           <h1>Latest Products</h1>
           <Row>
               {products.map((product) => (
