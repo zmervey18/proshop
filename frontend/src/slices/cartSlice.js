@@ -21,7 +21,7 @@ const cartSlice = createSlice({
       //check to see if item is already in the cart
       //current item x's id is equal to the item from action/payload id, put the item in variable
       const existItem = state.cartItems.find((x) => x._id === item._id);
-      //if item exists take state .cartitems and map through
+      //if item exists take state.cartitems and map through
       //if x._id is equal to the exist item id then return item and if not return whatever the item is we are looping through
       if (existItem) {
         state.cartItems = state.cartItems.map((x) =>
@@ -48,8 +48,11 @@ const cartSlice = createSlice({
           Number(state.shippingPrice) +
           Number(state.taxPrice)
       ).toFixed(2);
+
+      localStorage.setItem("cart", JSON.stringify(state));
     },
   },
 });
+export const { addToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
