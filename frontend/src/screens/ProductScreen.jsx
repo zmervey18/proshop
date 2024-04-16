@@ -12,14 +12,12 @@ import Message from '../components/Message'
 import { addToCart } from '../slices/cartSlice'
 import {useDispatch} from 'react-redux'
 
-
 const ProductScreen = () => {
   
   const { id: productId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
-  
 
   const { data: product, isLoading, error } = useGetProductDetailsQuery(productId);
   // console.log([...Array(product.countInStock).keys()]);
@@ -29,6 +27,7 @@ const ProductScreen = () => {
   }
 
   const addToCartHandler = () => {
+    //pass in addToCart and then pass an object into that, using spread operator and pass in the quantity
     dispatch(addToCart({ ...product, qty }))
     navigate('/cart')
   }

@@ -5,10 +5,6 @@ const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : { cartItems: [] };
 
-const addDecimals = (num) => {
-  return Math.round((num * 100) / 100).toFixed(2);
-};
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -22,14 +18,14 @@ const cartSlice = createSlice({
       //current item x's id is equal to the item from action/payload id, put the item in variable
       const existItem = state.cartItems.find((x) => x._id === item._id);
       //if item exists take state.cartitems and map through
-      //if x._id is equal to the exist item id then return item and if not return whatever the item is we are looping through
+      //if x._id is equal to the existing item id then return item and if not return whatever the item is we are looping through
       if (existItem) {
         state.cartItems = state.cartItems.map((x) =>
           x._id === existItem._id ? item : x
         );
       } else {
         //else add new items by spreading across what is already there
-        state.cartItems = [...state.cartItems];
+        state.cartItems = [...state.cartItems, item];
       }
       return updateCart(state);
     },
