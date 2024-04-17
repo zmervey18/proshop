@@ -13,7 +13,7 @@ import {
   deleteUser,
   updateUserProfile,
   updateUser,
-} from "../controllers/productController.js";
+} from "../controllers/userController.js";
 
 router.route("/").post(registerUser).get(getUsers);
 router.post("/logout", logoutUser);
