@@ -21,7 +21,8 @@ router.post("/logout", logoutUser);
 router.post("/login", authUser);
 router
   .route("/profile")
+  //user needs to be registered, therefore protected
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
-router.route("/:id").delete(deleteUser).get(getUserbyID).put(updateUser);
+router.route("/:id").delete(admin, deleteUser).get(admin, getUserbyID).put(updateUser);
 export default router;
