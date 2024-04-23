@@ -16,13 +16,17 @@ import {
 } from "../controllers/userController.js";
 import { protect, admin } from "../middleware/authMiddleWare.js";
 
-router.route("/").post(registerUser).get(getUsers);
+router.route("/").post(registerUser).get(protect, admin, getUsers);
 router.post("/logout", logoutUser);
-router.post("/login", authUser);
+router.post("/auth", authUser);
 router
   .route("/profile")
   //user needs to be registered, therefore protected
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
-router.route("/:id").delete(admin, deleteUser).get(admin, getUserbyID).put(updateUser);
+router
+  .route("/:id")
+  .delete(protect, admin, deleteUser)
+  .get(protect, admin, getUserbyID)
+  .put(protect, admin, updateUser);
 export default router;
