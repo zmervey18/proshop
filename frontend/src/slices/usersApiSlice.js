@@ -2,7 +2,7 @@ import { USERS_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
 //products api slice injects endpoints into main apislice
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     //getUsers is an endpoint
     login: builder.mutation({
@@ -17,4 +17,4 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation } = usersApiSlice;
+export const { useLoginMutation } = userApiSlice;
