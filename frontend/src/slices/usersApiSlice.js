@@ -9,7 +9,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       //pass in data because we are sending data to auth endpoint
       //data entails name and email
       query: (data) => ({
-        url: `${USERS_URL} / auth`,
+        url: `${USERS_URL}/auth`,
         method: "POST",
         body: data,
       }),

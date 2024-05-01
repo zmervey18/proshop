@@ -27,7 +27,6 @@ const Header = () => {
             console.log(err);
         }
     }
-
   return (
       <header>
           <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
@@ -41,20 +40,25 @@ const Header = () => {
                   <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
                   <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className='ms-auto'>
-                          <LinkContainer to="cart">
+                          <LinkContainer to="/cart">
                               <Nav.Link><FaShoppingCart /> Cart
                                   {cartItems.length > 0 && (
-                                      <Badge pill bg='success' style={{ marginLeft: '5px' }}>{cartItems.reduce((a, c) => a + c.qty, 0)}</Badge>
+                                      <Badge pill bg='success' style={{ marginLeft: '5px' }}>
+                                          {cartItems.reduce((a, c) => a + c.qty, 0)}
+                                      </Badge>
                                   )}
                               </Nav.Link>
                           </LinkContainer>
                           {userInfo ? (
+                              <>
                               <NavDropdown title={userInfo.name} id='username'>
-                                  <LinkContainer to="profile">
+                                  <LinkContainer to="/profile">
                                       <NavDropdown.Item>Profile</NavDropdown.Item>
-                                      <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                                   </LinkContainer>
-                            </NavDropdown>
+                                <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                             
+                                </NavDropdown>
+                                </>
                           ) : (<LinkContainer to="/login">
                               <Nav.Link ><FaUser /> Sign In</Nav.Link>
                             </LinkContainer>)}
