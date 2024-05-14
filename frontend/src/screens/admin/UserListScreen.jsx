@@ -8,7 +8,7 @@ import { useGetUsersQuery,useDeleteUserMutation } from "../../slices/usersApiSli
 
 const UserListScreen = () => {
     const { data: users, isLoading, error, refetch } = useGetUsersQuery();
-    const [deleteUser, { isLoading: loadingDelete }] = useDeleteUserMutation();
+    const [deleteUser] = useDeleteUserMutation();
     console.log(users);
 
     const deleteHandler = async (id) => {

@@ -9,9 +9,9 @@ const SearchBox = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if (keyword.trim()) {
+        if (keyword) {
+            navigate(`/search/${keyword.trim()}`);
             setKeyword('');
-            navigate(`/search/${keyword}`);
         } else {
             navigate('/');
         }
@@ -23,7 +23,7 @@ const SearchBox = () => {
               name='q'
               onChange={(e) => setKeyword(e.target.value)}
               value={keyword}
-              placeholder="Search Products"
+              placeholder="Search Products..."
               className="mr-sm-2 ml-sm-5"
           >
               
